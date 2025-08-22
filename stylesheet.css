@@ -61,7 +61,13 @@ a {
     color: rgb(255, 81, 1);
 }
 
-
+/* Hide menu toggle on desktop */
+.menu-toggle {
+    display: none;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+}
 
 .home {
     margin-top: 0%;
@@ -74,7 +80,7 @@ a {
     opacity: 0;
     animation: show-content 1.5s linear forwards;
     animation-delay: 1.6s;
-    display: flex; /* Add this line to create the two-column layout */
+    display: flex;
 }
 
 .home-info h1 {
@@ -126,11 +132,14 @@ a {
 .home-info p {
     font-size: 16px;
     margin: 10px 0 25px;
+    line-height: 1.6;
 }
 
 .home-info .btn-sci {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 /* Button */
@@ -155,6 +164,8 @@ a {
 
 .home-info .btn-sci .sci {
     margin-left: 20px;
+    display: flex;
+    gap: 8px;
 }
 
 .home-info .btn-sci .sci a {
@@ -164,7 +175,6 @@ a {
     border-radius: 50%;
     font-size: 20px;
     color: rgb(255, 81, 1);
-    margin: 0 8px;
     transition: .5s;
 }
 
@@ -252,15 +262,43 @@ a {
         transform: translateY(0%);
     }
 }
-/* 📱 Responsive Design */
+
+/* Responsive Design */
+/* Large screens */
+@media (max-width: 1200px) {
+    .navbar {
+        padding: 20px 5%;
+    }
+    
+    .home {
+        padding: 60px 5% 0;
+        gap: 40px;
+    }
+    
+    .home-info h1 {
+        font-size: 48px;
+    }
+    
+    .home-info h2 {
+        font-size: 28px;
+    }
+    
+    .home-img .img-box {
+        width: 35vw;
+        height: 35vw;
+    }
+}
+
+/* Medium screens */
 @media (max-width: 1024px) {
     .home {
-        flex-direction: column;   /* stack text & image */
+        flex-direction: column;
         justify-content: center;
         text-align: center;
-        padding: 80px 5% 0;
-        height: auto;             /* allow auto height */
-        overflow: hidden;
+        padding: 80px 5% 40px;
+        height: auto;
+        min-height: 100vh;
+        gap: 30px;
     }
 
     .home-info h1 {
@@ -272,31 +310,70 @@ a {
     }
 
     .home-info p {
-        font-size: 14px;
+        font-size: 15px;
+        max-width: 600px;
+        margin: 15px auto 25px;
     }
 
     .home-img .img-box {
         width: 60vw;
         height: 60vw;
-        margin-top: 30px;
+        max-width: 400px;
+        max-height: 400px;
+    }
+    
+    .home-info .btn-sci {
+        justify-content: center;
     }
 }
 
-@media (max-width: 600px) {
+/* Tablet screens */
+@media (max-width: 768px) {
     .navbar {
         padding: 15px 5%;
     }
 
     .navbar .logo {
-        font-size: 22px;
+        font-size: 24px;
     }
 
     .navbar ul {
-        display: none; /* hide full menu */
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 250px;
+        height: calc(100vh - 70px);
+        background: #1f242d;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        padding-top: 30px;
+        transition: 0.3s ease;
+        z-index: 200;
+    }
+
+    .navbar ul.show {
+        right: 0;
+    }
+
+    .navbar ul li {
+        margin: 15px 0;
+    }
+
+    .navbar ul li a {
+        font-size: 18px;
+    }
+
+    .menu-toggle {
+        display: block;
+        font-size: 28px;
+        color: #fff;
+        cursor: pointer;
+        z-index: 201;
     }
 
     .home-info h1 {
-        font-size: 34px;
+        font-size: 36px;
     }
 
     .home-info h2 {
@@ -304,7 +381,70 @@ a {
     }
 
     .home-info p {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    .home-img .img-box {
+        width: 70vw;
+        height: 70vw;
+        max-width: 350px;
+        max-height: 350px;
+    }
+    
+    .home-info .btn-sci {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .home-info .btn-sci .sci {
+        margin-left: 0;
+    }
+}
+
+/* Mobile screens */
+@media (max-width: 600px) {
+    .navbar {
+        padding: 12px 4%;
+    }
+
+    .navbar .logo {
+        font-size: 20px;
+    }
+
+    .navbar ul {
+        width: 220px;
+        top: 60px;
+        height: calc(100vh - 60px);
+    }
+
+    .navbar ul li a {
+        font-size: 16px;
+    }
+
+    .menu-toggle {
+        font-size: 24px;
+    }
+
+    .home {
+        padding: 70px 4% 30px;
+        gap: 25px;
+    }
+
+    .home-info h1 {
+        font-size: 30px;
+    }
+
+    .home-info h2 {
+        font-size: 18px;
+        margin-top: -5px;
+    }
+
+    .home-info p {
         font-size: 13px;
+        line-height: 1.5;
+        margin: 10px 0 20px;
     }
 
     .btn {
@@ -313,82 +453,131 @@ a {
     }
 
     .home-img .img-box {
-        width: 75vw;
-        height: 75vw;
+        width: 80vw;
+        height: 80vw;
+        max-width: 300px;
+        max-height: 300px;
+    }
+    
+    .home-info .btn-sci .sci a {
+        padding: 6px;
+        font-size: 18px;
     }
 }
-/* Hide menu toggle on desktop */
-.menu-toggle {
-    display: none;
-    font-size: 30px;
-    color: #fff;
-    cursor: pointer;
-}
 
-/* Mobile navbar */
-@media (max-width: 768px) {
+/* Small mobile screens */
+@media (max-width: 480px) {
     .navbar {
-        padding: 15px 5%;
+        padding: 10px 3%;
+    }
+
+    .navbar .logo {
+        font-size: 18px;
     }
 
     .navbar ul {
-        position: fixed;
-        top: 70px;
-        right: -100%;
         width: 200px;
-        height: 100vh;
-        background: #1f242d;
-        flex-direction: column;
-        align-items: center;
-        justify-content: start;
-        padding-top: 30px;
-        transition: 0.3s ease;
+        top: 55px;
+        height: calc(100vh - 55px);
     }
 
-    .navbar ul.show {
-        right: 0;
+    .home {
+        padding: 65px 3% 25px;
+        gap: 20px;
     }
 
-    .navbar ul li {
-        margin: 20px 0;
+    .home-info h1 {
+        font-size: 26px;
     }
 
-    .menu-toggle {
-        display: block;
+    .home-info h2 {
+        font-size: 16px;
+    }
+
+    .home-info p {
+        font-size: 12px;
+        padding: 0 5px;
+    }
+
+    .btn {
+        padding: 7px 18px;
+        font-size: 13px;
+    }
+
+    .home-img .img-box {
+        width: 85vw;
+        height: 85vw;
+        max-width: 250px;
+        max-height: 250px;
+    }
+    
+    .home-info .btn-sci .sci {
+        gap: 6px;
+    }
+    
+    .home-info .btn-sci .sci a {
+        padding: 5px;
+        font-size: 16px;
     }
 }
-/* --- Mobile Nav Fix (override old display:none) --- */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-    font-size: 30px;
-    color: #fff;
-    cursor: pointer;
-    z-index: 201; /* above the sliding panel */
-  }
 
-  .navbar ul {
-    display: flex !important;           /* <-- override the old display:none */
-    position: fixed;
-    top: 70px;                           /* below the navbar */
-    right: -100%;                        /* hidden off-canvas */
-    width: 240px;
-    height: calc(100vh - 70px);
-    background: #1f242d;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding-top: 20px;
-    transition: right 0.3s ease;
-    z-index: 200;
-  }
+/* Extra small screens */
+@media (max-width: 360px) {
+    .home-info h1 {
+        font-size: 24px;
+    }
 
-  .navbar ul.show {
-    right: 0;                            /* slide in */
-  }
+    .home-info h2 {
+        font-size: 14px;
+    }
 
-  .navbar ul li {
-    margin: 16px 0;
-  }
+    .home-info p {
+        font-size: 11px;
+    }
+
+    .btn {
+        padding: 6px 16px;
+        font-size: 12px;
+    }
+
+    .home-img .img-box {
+        width: 90vw;
+        height: 90vw;
+        max-width: 200px;
+        max-height: 200px;
+    }
+}
+
+/* Landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .home {
+        padding: 60px 5% 20px;
+        gap: 20px;
+    }
+    
+    .home-info h1 {
+        font-size: 24px;
+    }
+    
+    .home-info h2 {
+        font-size: 16px;
+    }
+    
+    .home-info p {
+        font-size: 12px;
+        margin: 8px 0 15px;
+    }
+    
+    .home-img .img-box {
+        width: 40vw;
+        height: 40vw;
+        max-width: 200px;
+        max-height: 200px;
+    }
+    
+    .navbar ul {
+        top: 50px;
+        height: calc(100vh - 50px);
+    }
 }
 
